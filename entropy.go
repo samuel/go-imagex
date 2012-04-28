@@ -14,15 +14,15 @@ func Entropy(img image.Image, rect image.Rectangle) float64 {
 		hist = hist[:256] // Only use Y channel
 	}
 
-	hist_len := 0
+	histLen := 0
 	for i := 0; i < len(hist); i++ {
-		hist_len += hist[i]
+		histLen += hist[i]
 	}
 
-	e := float64(0)
+	var e float64
 	for _, v := range hist {
 		if v != 0 {
-			p := float64(v) / float64(hist_len)
+			p := float64(v) / float64(histLen)
 			e += p * math.Log2(p)
 		}
 	}
